@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<script src="jquery.js"></script>
+<style>
+div, svg {
+    border: 1px solid black;
+    border-radius: 8px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px;
+    margin: 5px;
+}
+div.primary {
+    width: 90%;
+}
+div#controls {
+    border: none;
+    border-radius: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+div#controls > div {
+    width: 300px;
+} 
+svg#canvas {
+    width: 500px;
+    height: 300px;
+}
+input[type=text] {
+    padding-left: 3px;
+}
+button {
+    cursor: pointer;
+}
+textarea#log {
+    border: none;
+    width: 100%;
+    height: 100px;
+}
+</style>
+</head>
+
+<body>
+<div class=primary id=header>
+    WebCNC
+</div>
+<br/>
+
+<div class=primary id=main>
+    <svg id=canvas>
+    </svg>
+    <div id=controls>
+        <div id=controlsTool>
+            Tool speed: <input type=text id=ToolSpeed value="1"/>
+            <br/>
+            <button>Tool up</button>
+            <button>Tool down</button>
+        </div>
+        <br/>
+        <div id=controlsX>
+            X = <input type=text id=x value="0"/>
+            <button id=btnGotoX>Go</button>
+            <button id=btnAlignX>Align</button>
+        </div>
+        <br/>
+        <div id=controlsY>
+            Y = <input type=text id=y value="0"/>
+            <button id=btnGotoY>Go</button>
+            <button id=btnAlignY>Align</button>
+        </div>
+        <br/>
+        <div id=controlsSketch>
+        Sketch:<br/>
+        <button id=btnDryRun>Dry run</button>
+        <button id=btnRun>Run</button>
+        </div>
+    </div>
+</div>
+<br/>
+
+<div class=primary id=console>
+    <textarea id=log></textarea>
+</div>
+</body>
+
+</html>
