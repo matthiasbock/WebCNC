@@ -1,5 +1,20 @@
-#include <EtherCard.h>
-#include <enc28j60.h>
-#include <net.h>
 
+void setup() {
+  Serial.begin(9600);
+}
+
+void serialEvent() {
+  if (Serial.available() > 0) {
+    int read = Serial.read();
+//    Serial.print( read, DEC );
+    Serial.write( read );
+    if (read == 10) {
+      Serial.write("ok.\n");
+    }
+    
+  }
+}
+
+void loop() {
+}
 
