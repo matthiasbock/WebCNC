@@ -1,15 +1,15 @@
-const DEVICE_PATH = '/dev/ttyUSB0';
+
 const serial = chrome.serial;
 
 /* Interprets an ArrayBuffer as UTF-8 encoded string data. */
-var ab2str = function(buf) {
+ab2str = function(buf) {
   var bufView = new Uint8Array(buf);
   var encodedString = String.fromCharCode.apply(null, bufView);
   return decodeURIComponent(escape(encodedString));
 };
 
 /* Converts a string to UTF-8 encoding in a Uint8Array; returns the array buffer. */
-var str2ab = function(str) {
+str2ab = function(str) {
   var encodedString = unescape(encodeURIComponent(str));
   var bytes = new Uint8Array(encodedString.length);
   for (var i = 0; i < encodedString.length; ++i) {
@@ -64,8 +64,8 @@ SerialConnection.prototype.onReceiveError = function(errorInfo) {
 };
 
 SerialConnection.prototype.connect = function(path) {
-    console.log(serial);
-  serial.open(path, this.onConnectComplete.bind(this))
+  console.log(serial);
+  serial.open(path, {bitrate: 9600}, this.onConnectComplete.bind(this))
 };
 
 SerialConnection.prototype.send = function(msg) {
@@ -81,31 +81,4 @@ SerialConnection.prototype.disconnect = function() {
   }
   serial.disconnect(this.connectionId, function() {});
 };
-
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-
-var connection = new SerialConnection();
-
-connection.onConnect.addListener(function() {
-  log('connected to: ' + DEVICE_PATH);
-  connection.send("hello arduino");
-});
-
-connection.onReadLine.addListener(function(line) {
-  log('read line: ' + line);
-});
-
-connection.connect(DEVICE_PATH);
-
-function log(msg) {
-  var buffer = document.querySelector('#buffer');
-  buffer.innerHTML += msg + '<br/>';
-}
-
-var is_on = false;
-document.querySelector('button').addEventListener('click', function() {
-  is_on = !is_on;
-  connection.send(is_on ? 'y' : 'n');
-});
 

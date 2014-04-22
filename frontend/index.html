@@ -16,6 +16,13 @@
         <g id=canvas></g>
     </svg>
     <div id=controls>
+        <div id=controlsUART>
+            Port:&nbsp;
+            <select id=device>
+            </select>
+            <button id=btnConnect>Connect</button>
+        </div>
+        <br/>
         <div id=controlsTool>
             Tool speed: <input type=text id=ToolSpeed value="1"/>
             <br/>
@@ -25,13 +32,13 @@
         <br/>
         <div id=controlsX>
             X = <input type=text id=x value="0"/>
-            <button id=btnGotoX>Go</button>
+            <button id=btnGoX>Go</button>
             <button id=btnAlignX>Align X</button>
         </div>
         <br/>
         <div id=controlsY>
             Y = <input type=text id=y value="0"/>
-            <button id=btnGotoY>Go</button>
+            <button id=btnGoY>Go</button>
             <button id=btnAlignY>Align Y</button>
         </div>
         <br/>
@@ -48,6 +55,7 @@
     <textarea id=log></textarea>
 </div>
 
+<script src="serial.js"></script>
 <script src="index.js"></script>
 </body>
 
